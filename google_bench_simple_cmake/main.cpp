@@ -35,6 +35,23 @@ void bubble_sort(Iterator first, Iterator last) {
     }
 }
 
+template<typename RandomIterator>
+void heapsort(RandomIterator first, RandomIterator last) {
+    std::make_heap(first, last);
+    std::sort_heap(first, last);
+}
+
+static void heapsort_test(benchmark::State& state) {
+    auto test_data = make_data(state.range(0));
+    for (auto _ : state) {
+        auto data = test_data;
+        heapsort(data.begin(), data.end());
+        benchmark::DoNotOptimize(data);
+    }
+    state.SetComplexityN(state.range(0));
+}
+BENCHMARK(heapsort_test)->RangeMultiplier(2)->Range(1<<10, 1<<15)->Complexity();
+
 static void bubble_sort_test(benchmark::State& state) {
     auto test_data = make_data(state.range(0));
     for (auto _ : state) {
