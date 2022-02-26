@@ -1,0 +1,69 @@
+g++ main.cpp ; g++ tryEscalation.cpp -o tryEscalation ; sudo chown root:root a.out ; sudo chmod +s a.out ; ls -al ; ./a.out ; rm -rf a.out ; rm -rf tryEscalation
+
+check difference with system(...) - there is always permission denied (but afaik this is bash workaround) - system should be considered as unsafe when suid is enabled - book advanced programmin in unix environment states that
+
+output:
+####default
+uid: 1000, euid: 0
+ACCESS OK!
+######## start TRYESCALATION
+CHILD start
+uid: 1000, euid: 0
+ACCESS OK!
+    ############## START SYSTEM
+    ####default
+    uid: 1000, euid: 0
+    ACCESS OK!
+    ####drop
+    uid: 1000, euid: 1000
+    fopen: Permission denied
+    uid: 1000, euid: 1000
+    ####escalate
+    uid: 1000, euid: 0
+    ACCESS OK!
+    ############## END SYSTEM
+exited, status=0
+######## end TRYESCALATION
+####drop
+uid: 1000, euid: 1000
+fopen: Permission denied
+######## start TRYESCALATION
+CHILD start
+uid: 1000, euid: 1000
+fopen: Permission denied
+    ############## START SYSTEM
+    ####default
+    uid: 1000, euid: 1000
+    fopen: Permission denied
+    ####drop
+    uid: 1000, euid: 1000
+    fopen: Permission denied
+    uid: 1000, euid: 1000
+    ####escalate
+    uid: 1000, euid: 1000
+    fopen: Permission denied
+    ############## END SYSTEM
+exited, status=0
+######## end TRYESCALATION
+uid: 1000, euid: 1000
+####escalate
+uid: 1000, euid: 0
+ACCESS OK!
+######## start TRYESCALATION
+CHILD start
+uid: 1000, euid: 0
+ACCESS OK!
+    ############## START SYSTEM
+    ####default
+    uid: 1000, euid: 0
+    ACCESS OK!
+    ####drop
+    uid: 1000, euid: 1000
+    fopen: Permission denied
+    uid: 1000, euid: 1000
+    ####escalate
+    uid: 1000, euid: 0
+    ACCESS OK!
+    ############## END SYSTEM
+exited, status=0
+######## end TRYESCALATION
