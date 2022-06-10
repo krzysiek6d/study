@@ -5,33 +5,13 @@
 #include <sstream>
 
 
-std::vector<std::string> tokenize(const std::string& cmdline)
-{
-    std::vector<std::string> args;
-    std::istringstream iss(cmdline);
-    std::string arg;
-    while (iss >> arg)
-    {
-        args.push_back(arg);
-    }
-    return args;
-}
-
-
-void read_args_outside_main()
+std::vector<std::string> read_args_outside_main()
 {
     std::ifstream is("/proc/self/cmdline");
-    std::string cmdline{};
-    std::getline(is, cmdline);
-    std::replace(cmdline.begin(), cmdline.end(), '\000', ' ');
-    std::cout << "args read from /proc/self/cmdline" << std::endl;
-    std::cout << cmdline << std::endl;
-    std::cout << "tokenized" << std::endl;
-    auto argv = tokenize(cmdline);
-    for (int i = 0; i < argv.size(); i++)
-    {
-        std::cout << "arg " << i << ": " << argv[i] << std::endl;
-    }
+    std::vector<std::string> argv;
+    for (std::string arg; std::getline(is, arg, '\000');)
+        argv.push_back(arg);
+    return argv;
 }
 
 
@@ -42,5 +22,11 @@ int main(int argc, char** argv)
     {
         std::cout << "arg " << i << ": " << argv[i] << std::endl;
     }
-    read_args_outside_main();
+    
+    
+    auto args_read_outside_main = read_args_outside_main();
+    for (int i = 0; i < args_read_outside_main.size(); i++)
+    {
+        std::cout << "arg " << i << ": " << args_read_outside_main[i] << std::endl;
+    }
 }
