@@ -1,4 +1,5 @@
 This example shows that protobuf without proto file sometimes can be ambiguous
+
 because of ambiguity of "xEpRhRHOPRX!" can be decoded in 2 ways:
 - as a string "xEpRhRHOPRX!"
 - or as a structure of numbers:
