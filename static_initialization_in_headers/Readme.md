@@ -4,29 +4,29 @@ There is a map in info_data.h
 const std::map<EType, std::map<std::string, std::string>> huge_map = {...}
 ```
 
-Including this file in many cpp-s results in such memory usage:
+Including this file in many cpp-s results in big memory usage, but when this map is moved to the cpp file (info_data.cpp) then the memory usage is much smaller. You can see the big difference (~480K vs 80K).
+
+#### when map is defined in header:
+
 ![in_header.png](in_header.png)
 
-but when this map is moved to the cpp file (info_data.cpp) then the memory usage is like that:
+#### when map is defined in cpp:
+
 ![in_cpp.png](in_cpp.png)
 
-So you can see the big difference (~480K vs 80K).
-
-Here are also screenshots from heaptrack:
-
-#### in header:
+#### when map is defined in header:
 
 ![in_header_heaptrack.png](in_header_heaptrack.png)
 
-#### in cpp:
+#### when map is defined in cpp:
 
 ![in_cpp_heaptrack.png](in_cpp_heaptrack.png)
 
-#### in header:
+#### when map is defined in header:
 
 ![in_header_heaptrack_calls.png](in_header_heaptrack_calls.png)
 
-#### in cpp:
+#### when map is defined in cpp:
 
 ![in_cpp_heaptrack_calls.png](in_cpp_heaptrack_calls.png)
 
