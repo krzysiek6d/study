@@ -10,7 +10,7 @@ Including this file in many cpp-s results in such memory usage:
 but when moved to the cpp file (info_data.cpp) then the memory usage is like that:
 ![in_cpp.png](in_cpp.png)
 
-So you can see the big difference.
+So you can see the big difference (481K vs 76K).
 
 
 ### Building:
