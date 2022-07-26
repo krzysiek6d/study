@@ -40,4 +40,5 @@ adding static does not make difference
 
 ### How I measured it?
 Using https://github.com/koute/bytehound
-and using heaptrack
+
+and using heaptrack https://github.com/KDE/heaptrack
