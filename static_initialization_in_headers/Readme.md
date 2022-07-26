@@ -6,6 +6,12 @@ const std::map<EType, std::map<std::string, std::string>> huge_map = {...}
 
 Including this file in many cpp-s results in big memory usage, but when this map is moved to the cpp file (info_data.cpp) then the memory usage is much smaller. You can see the big difference (~480K vs 80K).
 
+By moving this map to the cpp file I mean that the
+```
+const std::map<EType, std::map<std::string, std::string>> huge_map = {...}
+```
+is not even declared in info_data.hpp - whole part of this code is moved to the info_data.cpp
+
 #### when map is defined in header:
 
 ![in_header.png](in_header.png)
