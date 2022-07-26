@@ -7,7 +7,7 @@ const std::map<EType, std::map<std::string, std::string>> huge_map = {...}
 Including this file in many cpp-s results in such memory usage:
 ![in_header.png](in_header.png)
 
-but when moved to the cpp file (info_data.cpp) then the memory usage is like that:
+but when this map is moved to the cpp file (info_data.cpp) then the memory usage is like that:
 ![in_cpp.png](in_cpp.png)
 
 So you can see the big difference (481K vs 76K).
