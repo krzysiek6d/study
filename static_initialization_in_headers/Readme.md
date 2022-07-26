@@ -22,6 +22,10 @@ In this repo I committed generated files with X=2 but tests were run on X=200.
 ### Analysis
 Symbols diff on 2 binaries (definition in hpp vs in cpp) is there:
 https://www.diffchecker.com/wyHn7X2e
+Inputs to diffs were generated with command:
+```
+nm static_initialization_in_headers | grep "_Z.*" -o | c++filt | sort &> names.txt
+```
 
 adding static does not make difference
 
