@@ -42,6 +42,8 @@ In users_generator.py you can define how many X will be created.
 After running users_generator.py you can build binary with cmake and make.
 In this repo I committed generated files with X=2 but tests were run on X=200.
 
+Then you can modify map initializations and rebuild to see difference.
+
 ### Analysis
 Symbols diff on 2 binaries (definition in hpp vs in cpp) is there:
 https://www.diffchecker.com/wyHn7X2e
