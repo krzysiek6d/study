@@ -1,0 +1,1 @@
+if component.cpp is a private source then static initialization will not be executed
