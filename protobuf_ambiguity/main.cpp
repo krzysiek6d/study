@@ -19,6 +19,7 @@ int main() {
 
     SensorInfo sensor;
     sensor.name = "xEpRhRHOPRX!";
+    //sensor.name = "sensor1";
     sensor.data.time = 2341234;
     sensor.data.value1 = 12;
     sensor.data.value2 = 99;
